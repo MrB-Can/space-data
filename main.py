@@ -4,10 +4,11 @@ import requests
 # TODO: create some sort of class change or method to run all methods and return all data in a tuple of dict.
 # TODO: Create a data engine to get this into a database / flow to see in bigeye
 
-class SpaceData:
+class SpaceDataTLE:
+
     def __init__(self, norad_id):
         self.api_root = 'https://api.n2yo.com/rest/v1/satellite/'
-        self.api_key = '25544&apiKey=R9CBTT-75U9QA-GCFB86-4YNB'
+        self.api_key = 'R9CBTT-75U9QA-GCFB86-4YNB'
         self.norad_id = norad_id
 
     def get_object_tle(self):
@@ -101,7 +102,7 @@ class SpaceData:
         tle = self.get_object_tle()
         return tle[134:139].strip()
 
-info = SpaceData(25544)
+info = SpaceDataTLE(25544)
 print(info.get_object_tle())
 print(info.get_object_classification())
 print(info.get_object_international_designator_year())
