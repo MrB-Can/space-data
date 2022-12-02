@@ -1,6 +1,8 @@
 import requests
-from json import JSONDecodeError
 
+# TODO: Change the class to use vraiables to create the data instead of all these methods.
+# TODO: create some sort of class change or method to run all methods and return all data in a tuple of dict.
+# TODO: Create a data engine to get this into a database / flow to see in bigeye
 
 class SpaceData:
     def __init__(self, norad_id):
