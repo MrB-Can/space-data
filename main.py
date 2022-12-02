@@ -24,27 +24,29 @@ class SpaceDataTLE:
         return tle[7]
 
     def get_object_international_designator_year(self):
-        """Get the NORAD classification of the object (U=unclassified, C= Classified, S=Secret)"""
+        """Get the international designator for the year of the object's launch"""
         tle = self.get_object_tle()
         return int(tle[9:11].strip())
 
     def get_object_international_designator_launch(self):
-        """Get the NORAD classification of the object (U=unclassified, C= Classified, S=Secret)"""
+        """Get the object's associated launch number for the year. E.G. a launch number of 067 neans this object was
+        launched on the 67th launch of the year. """
         tle = self.get_object_tle()
         return int(tle[11:14].strip())
 
     def get_object_international_designator_piece(self):
-        """Get the NORAD classification of the object (U=unclassified, C= Classified, S=Secret)"""
+        """Get the objects launch piece information. E.g. B would mean that this object was object B on that specific
+        launch (A was anbother object on the launch) """
         tle = self.get_object_tle()
         return tle[14:17].strip()
 
     def get_object_epoch_year(self):
-        """Get the NORAD classification of the object (U=unclassified, C= Classified, S=Secret)"""
+        """Get the EPOCH year of the launch. This is in EPOCH time format."""
         tle = self.get_object_tle()
         return tle[18:20].strip()
 
     def get_object_epoch_day(self):
-        """Get the NORAD classification of the object (U=unclassified, C= Classified, S=Secret)"""
+        """Get the EPOCH day of the year. This is in EPOCH time format."""
         tle = self.get_object_tle()
         return float(tle[20:32].strip())
 
@@ -54,7 +56,7 @@ class SpaceDataTLE:
         return tle[33:43].strip()
 
     def get_object_second_div(self):
-        """First derivative of mean motion; the ballistic coefficient"""
+        """Second derivative of mean motion; the ballistic coefficient"""
         tle = self.get_object_tle()
         return tle[44:52].strip()
 
