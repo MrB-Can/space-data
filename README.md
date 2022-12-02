@@ -1,5 +1,10 @@
-# Space Data
-This is a tool to generate space data from multiple sources. This is part of paulspipes, a data generation system for demo and testing data for different data and database types. 
+# PAUL's PIPES | Space Data
+This is a tool to generate space data from multiple sources. This is part of paulspipes, a data generation system for demo and testing data for different data and database types. Space Data is only one of the many components to Paul's Pipes. All of the other data systems are private, but I am happy to make redacted soutions available publically. 
+## Sources and credits
+Thanks to the main sources that made this possible:
+NORAD
+NASA
+n2yo
 ## Modules
 There are seeral modules for creating data for testing. 
 ### NORAD Objects
