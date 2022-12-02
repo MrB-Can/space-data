@@ -34,4 +34,3 @@ def get_aws_secret(secret_name):
     secret_json = json.loads(secret)
 
     return secret_json[secret_name]
-
