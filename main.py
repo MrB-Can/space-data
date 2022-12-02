@@ -1,18 +1,17 @@
 import requests
 
-from secrets import get_secret
+from secrets import get_aws_secret
 
 
 # TODO: Change the class to use vraiables to create the data instead of all these methods.
 # TODO: create some sort of class change or method to run all methods and return all data in a tuple of dict.
 # TODO: Create a data engine to get this into a database / flow to see in bigeye
-# TODO: Setup secrets handling and rotate keys
 
 class SpaceDataTLE:
 
     def __init__(self, norad_id):
         self.api_root = 'https://api.n2yo.com/rest/v1/satellite/'
-        self.api_key = get_secret('api_key_n2yo')
+        self.api_key = get_aws_secret('api_key_n2yo')
         self.norad_id = norad_id
 
     def get_object_tle(self):

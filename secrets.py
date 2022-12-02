@@ -8,7 +8,7 @@ import json
 from botocore.exceptions import ClientError
 
 
-def get_secret(secret_name):
+def get_aws_secret(secret_name):
     region_name = "us-west-2"
 
     # Create a Secrets Manager client
