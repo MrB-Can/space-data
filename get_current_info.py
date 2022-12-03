@@ -14,11 +14,21 @@ class SpaceDataTLE:
         self.api_key = get_aws_secret('api_key_n2yo')
         self.norad_id = norad_id
 
+    def get_object_name(self):
+        """This is used to return the two line element set decribing the position of the object associated with the
+        NORAD ID passed. The NORAD ID is required, but can be found using another method in this class. """
+        objact_data = requests.get(f'{self.api_root}tle/{self.norad_id}&apiKey={self.api_key}')
+        return objact_data.json()['info']['satname']
     def get_object_tle(self):
         """This is used to return the two line element set decribing the position of the object associated with the
         NORAD ID passed. The NORAD ID is required, but can be found using another method in this class. """
-        object_position = requests.get(f'{self.api_root}tle/{self.norad_id}&apiKey={self.api_key}')
-        return object_position.json()['tle']
+        objact_data = requests.get(f'{self.api_root}tle/{self.norad_id}&apiKey={self.api_key}')
+        return objact_data.json()['tle']
+
+    def get_object_norad_id(self):
+        """Get the NORAD classification of the object (U=unclassified, C= Classified, S=Secret)"""
+        tle = self.get_object_tle()
+        return tle[1:7].strip()
 
     def get_object_classification(self):
         """Get the NORAD classification of the object (U=unclassified, C= Classified, S=Secret)"""
@@ -107,20 +117,4 @@ class SpaceDataTLE:
         tle = self.get_object_tle()
         return tle[134:139].strip()
 
-info = SpaceDataTLE(25544)
-print(info.get_object_tle())
-print(info.get_object_classification())
-print(info.get_object_international_designator_year())
-print(info.get_object_international_designator_launch())
-print(info.get_object_international_designator_piece())
-print(info.get_object_epoch_year())
-print(info.get_object_first_div())
-print(info.get_object_second_div())
-print(info.get_object_drag())
-print(info.get_object_inclination())
-print(info.get_object_ascension())
-print(info.get_object_eccentricity())
-print(info.get_object_perigee())
-print(info.get_object_anomaly())
-print(info.get_object_motion())
-print(info.get_object_revolutions())
+
