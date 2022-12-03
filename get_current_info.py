@@ -9,16 +9,28 @@ from secrets import get_aws_secret
 
 class SpaceDataTLE:
 
-    def __init__(self, norad_id):
+    def __init__(self, norad_id=1):
         self.api_root = 'https://api.n2yo.com/rest/v1/satellite/'
         self.api_key = get_aws_secret('api_key_n2yo')
         self.norad_id = norad_id
+        self.tle_raw = self.get_object_tle()
+
+    def make_tle_dict(self):
+        print('here')
+        tle_dict = {
+            'norad_id': self.tle_raw[1:7].strip(),
+            'classification': self.tle_raw[7],
+            'launch_year': int(self.tle_raw[9:11].strip()),
+            'launch_number': int(self.tle_raw[11:14].strip())
+        }
+        return tle_dict
 
     def get_object_name(self):
         """This is used to return the two line element set decribing the position of the object associated with the
         NORAD ID passed. The NORAD ID is required, but can be found using another method in this class. """
         objact_data = requests.get(f'{self.api_root}tle/{self.norad_id}&apiKey={self.api_key}')
         return objact_data.json()['info']['satname']
+
     def get_object_tle(self):
         """This is used to return the two line element set decribing the position of the object associated with the
         NORAD ID passed. The NORAD ID is required, but can be found using another method in this class. """
@@ -118,3 +130,7 @@ class SpaceDataTLE:
         return tle[134:139].strip()
 
 
+space_data = SpaceDataTLE(123)
+print(space_data.get_object_tle())
+print(space_data.tle_raw)
+print(space_data.make_tle_dict())

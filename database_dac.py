@@ -9,6 +9,12 @@ class SpaceObjects(Base):
 
     id = Column(Integer, primary_key=True, nullable=False)
     record_time = Column(DateTime, nullable=False)
+    norad_id = Column(Integer, nullable=False)
+    classification = Column(String(1))
+    launch_year = Column(Integer(4))
+    launch_number = Column(Integer(3))
+
+
 
 
 class NORADInfo(Base):
