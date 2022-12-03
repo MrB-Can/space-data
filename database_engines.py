@@ -5,15 +5,15 @@ from secrets import get_aws_secret
 
 def engine_bigquery():
     engine = create_engine(
-        "googlebigquery:///?DataSetId=MyDataSetId&ProjectId=MyProjectId&InitiateOAuth=GETANDREFRESH&OAuthSettingsLocation=/PATH/TO/OAuthSettings.txt")
+        "googlebigquery:///?DataSetId=MyDataSetId&ProjectId=MyProjectId&InitiateOAuth=GETANDREFRESH"
+        "&OAuthSettingsLocation=/PATH/TO/OAuthSettings.txt")
     return engine
 
 
-def engine_postgres(server="localhost", schema="", database="", echo=True):
+def engine_postgres(server: object = "localhost", schema: object = "", database: object = "", echo: object = True) -> object:
     engine = create_engine(f"postgresql://postgres:{get_aws_secret('postgres_paul_mac')}@{server}:5432/{database}",
                            echo=echo)
     return engine
-
 
 
 def test_engine():
@@ -28,6 +28,3 @@ def test_engine():
     print(f"Database name: {engine.execute('select current_database()').fetchall()[0]}")
     print(f'Tables: {tbl_list}')
     print(f'Schemas: {sc_list}')
-
-
-test_engine()
